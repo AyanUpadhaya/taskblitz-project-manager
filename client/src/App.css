@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.board {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.column {
+  padding: 20px;
+  background-color: #101204;
+  margin: 0 10px;
+  border-radius: 8px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.task-list {
+  min-height: 200px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.task-card {
+  background-color: #22272B;
+  color:#fff;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius:5px;
+}
