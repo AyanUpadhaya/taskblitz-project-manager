@@ -1,23 +1,20 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState,useMemo } from "react";
 import AddTaskForm from "./AddTaskForm";
 import { GlobalState } from "../views/BoardView";
 import { v4 as uuidv4 } from "uuid";
-const Loader = () => {
-  return <h1>Loading...</h1>;
-};
+
 
 const ListCard = ({ card }) => {
   const { handleDrop, handleDragStart, tasks,handleAddTask } = useContext(GlobalState);
   const [displayForm, setDisplayForm] = useState(false);
-  const [newTask,setNewTask] = useState({id:uuidv4(),title:'',status:card.title.toLowerCase()});
+  const [newTask,setNewTask] = useState('');
   const inputRef = useRef()
   const addNewTaskToList =(e)=>{
-      e.preventDefault();
-      handleAddTask(newTask)
-      setNewTask({id:tasks.length+1,title:'',status:card.title.toLowerCase()})
-      inputRef.current.value = '';
+    e.preventDefault();
+    handleAddTask({id:uuidv4(),title:newTask,status:card.title.toLowerCase()})
+    inputRef.current.value = '';
   }
-  console.log(newTask)
+
 
   return (
     <div>
@@ -56,7 +53,7 @@ const ListCard = ({ card }) => {
             <input
               className="input input-bordered join-item text-white"
               placeholder="add task"
-              onChange={(e)=>setNewTask({...newTask,title:e.target.value})}
+              onBlur={(e)=>setNewTask(e.target.value)}
               ref={inputRef}
             />
           </div>
