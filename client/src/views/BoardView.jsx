@@ -29,6 +29,22 @@ const BoardView = ({cardsCollections}) => {
   const handleAddTask =(newTask)=>{
     setTasks([...tasks,newTask] )
   } 
+  const handleUpdateTask =(updatedTask)=>{
+    const taskId = updatedTask.id
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, ...updatedTask };
+      }
+      return task;
+    });
+
+    setTasks(updatedTasks);
+  };
+  const handleTaskDelete = (taskId)=>{
+    const updatedTasks = tasks.filter(task=>task.id !== taskId);
+    setTasks(updatedTasks);
+
+  }
   
   return (
     
@@ -41,6 +57,8 @@ const BoardView = ({cardsCollections}) => {
               handleAddTask,
               handleDrop, 
               handleDragStart,
+              handleUpdateTask,
+              handleTaskDelete
             }}
         >
         {
